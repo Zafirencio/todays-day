@@ -9,4 +9,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('ioc-angular-todaysday-joelfont');
+  constructor()
+  {
+    console.log('Inicialització de Today\'s Day confirmada!');
+  }
 }
