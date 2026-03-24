@@ -1,3 +1,23 @@
 <div class="search-container">
-    <input type="text" placeholder="Cercar..." (input)="onSearchTermChange($event)" class="search-input">
+    <form #searchForm="ngForm" (ngSubmit)="onSearchTermChange()" class="search-form">
+        <div class="input-group">
+            <input type="text" name="searchText" [(ngModel)]="searchText" (ngModelChange)="onSearchTermErased($event)"
+            minlength="3" #searchModel="ngModel" placeholder="Cerca esdeveniments al calendari..." class="search-input">
+
+            <button type="submit" [disabled]="searchForm.invalid" class="btn_search">Cercar</button>
+        </div>
+
+        @if (searchModel.invalid)
+        {
+            @if (searchModel.touched)
+            {
+                <div class="error-message">
+                    @if (searchModel.errors?.['minlength'])
+                    {
+                        El text de cerca ha de tenir almenys 3 caràcters.
+                    }
+                </div>
+            }
+        }
+    </form>
 </div>

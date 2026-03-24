@@ -1,17 +1,23 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-barra-cerca',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './barra-cerca.html',
   styleUrl: './barra-cerca.scss',
 })
 export class BarraCerca {
   @Output('search-term') searchTerm = new EventEmitter<string>();
 
-  onSearchTermChange(event: Event) 
+  searchText: string = '';
+
+  onSearchTermChange() 
   {
-    const inputElement = event.target as HTMLInputElement;
-    this.searchTerm.emit(inputElement.value);
-  } 
+    this.searchTerm.emit(this.searchText);
+  }
+  onSearchTermErased(value: string) {
+    if (!value)
+      this.searchTerm.emit('');
+  }
 }
