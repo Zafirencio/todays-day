@@ -1,0 +1,22 @@
+import { Component, Input } from '@angular/core';
+import { ElementCalendar } from '../../models/elementCalendar.model';
+import { TargetaElement } from '../targeta-element/targeta-element';
+
+@Component({
+  selector: 'app-llista-elements',
+  imports: [TargetaElement],
+  templateUrl: './llista-elements.html',
+  styleUrl: './llista-elements.scss',
+})
+export class LlistaElements {
+  @Input() elements: ElementCalendar[] = [];
+
+  onElementClicked(element: ElementCalendar) {
+    console.log('Element clicked:', element);
+  }
+
+  trackById(index: number, item: ElementCalendar): number
+  {
+    return item.id; //trackById ens ajuda a trobar l'event al calendari per la seva ID.
+  }
+}

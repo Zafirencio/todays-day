@@ -1,0 +1,25 @@
+.targeta {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  cursor: pointer;
+
+
+  h3 {
+    margin: 0 0 1rem 0;
+    color: #0f172a;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: #475569;
+    font-size: 0.95rem;
+
+    strong {
+      color: #334155;
+      font-weight: 600;
+    }
+  }
+}

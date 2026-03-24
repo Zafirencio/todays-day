@@ -1,0 +1,8 @@
+<div class="calendar-elements-list">
+    @for (elem of elements; track elem.id)
+    {
+        <app-targeta-element [element-calendar]="elem" (element-clicked)="onElementClicked(elem)"></app-targeta-element>
+    } @empty {
+        <p>No hi ha elements per mostrar.</p>
+    }
+</div>

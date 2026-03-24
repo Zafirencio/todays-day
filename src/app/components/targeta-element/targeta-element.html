@@ -1,0 +1,8 @@
+<div class="targeta" (click)="onElementClick()">
+    <h3>{{ elementCalendar.name }}</h3>
+    <p><strong>Inici:</strong> {{ elementCalendar.dateStart | date: 'dd/MM/yyyy HH:mm' }}</p>
+    <p><strong>Durada:</strong> {{ elementCalendar.timeInMinutes }} minuts</p>
+    @if (elementCalendar.dateEnd) {
+    <p><strong>Fi:</strong> {{ elementCalendar.dateEnd | date: 'dd/MM/yyyy HH:mm' }}</p>
+    }
+</div>
