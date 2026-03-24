@@ -1,8 +1,8 @@
-<div class="calendar-elements-list">
+<div class="calendar-elements-list" aria-live="polite">
     @for (elem of elements; track elem.id)
     {
-        <app-targeta-element [element-calendar]="elem" (element-clicked)="onElementClicked(elem)"></app-targeta-element>
+        <app-targeta-element [element-calendar]="elem" (element-clicked)="onElementClicked($event)"></app-targeta-element>
     } @empty {
-        <p>No hi ha elements per mostrar.</p>
+        <p class="empty-message">No hi ha elements per mostrar.</p>
     }
 </div>

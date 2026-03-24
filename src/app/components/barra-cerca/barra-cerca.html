@@ -1,17 +1,21 @@
 <div class="search-container">
     <form #searchForm="ngForm" (ngSubmit)="onSearchTermChange()" class="search-form">
         <div class="input-group">
-            <input type="text" name="searchText" [(ngModel)]="searchText" (ngModelChange)="onSearchTermErased($event)"
-            minlength="3" #searchModel="ngModel" placeholder="Cerca esdeveniments al calendari..." class="search-input">
+            <label for="searchInput" class="sr-only">Cercar esdeveniments al calendari</label>
 
-            <button type="submit" [disabled]="searchForm.invalid" class="btn_search">Cercar</button>
+            <input id="searchInput" type="text" name="searchText"
+             [(ngModel)]="searchText" (ngModelChange)="onSearchTermErased($event)" 
+             minlength="3" #searchModel="ngModel" placeholder="Cerca esdeveniments al calendari..." class="search-input"
+             [attr.aria-invalid]="searchModel.invalid && searchModel.touched ? 'true' : null" aria-describedby="searchError">
+
+            <button type="submit" [disabled]="searchForm.invalid" class="btn_search" aria-label="Executar la cerca">Cercar</button>
         </div>
 
         @if (searchModel.invalid)
         {
             @if (searchModel.touched)
             {
-                <div class="error-message">
+                <div id="searchError" class="error-message" aria-live="polite">
                     @if (searchModel.errors?.['minlength'])
                     {
                         El text de cerca ha de tenir almenys 3 caràcters.

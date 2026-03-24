@@ -2,8 +2,6 @@
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   padding: 1.5rem;
-  cursor: pointer;
-
 
   h3 {
     margin: 0 0 1rem 0;
@@ -21,5 +19,26 @@
       color: #334155;
       font-weight: 600;
     }
+  }  
+}
+.btn-details {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #475569;
+    color: white;
+  }
+
+  &:focus-visible {
+    background-color: #475569;
+    color: white;
+
   }
 }

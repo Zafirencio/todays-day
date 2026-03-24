@@ -1,8 +1,11 @@
-<div class="targeta" (click)="onElementClick()">
+<div class="targeta">
     <h3>{{ elementCalendar.name }}</h3>
     <p><strong>Inici:</strong> {{ elementCalendar.dateStart | date: 'dd/MM/yyyy HH:mm' }}</p>
     <p><strong>Durada:</strong> {{ elementCalendar.timeInMinutes }} minuts</p>
     @if (elementCalendar.dateEnd) {
     <p><strong>Fi:</strong> {{ elementCalendar.dateEnd | date: 'dd/MM/yyyy HH:mm' }}</p>
     }
+    <button type="button" class="btn-details" (click)="onElementClick()" aria-label="Seleccionar + {{ elementCalendar.name }}">
+        Seleccionar
+    </button>
 </div>
