@@ -15,7 +15,7 @@ export class LlistaElements {
     console.log('Element clicked:', element);
   }
 
-  trackById(index: number, item: ElementCalendar): number
+  trackById(index: number, item: ElementCalendar): string
   {
     return item.id; //trackById ens ajuda a trobar l'event al calendari per la seva ID.
   }

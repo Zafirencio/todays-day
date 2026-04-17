@@ -8,4 +8,11 @@
     <button type="button" class="btn-details" (click)="onElementClick()" aria-label="Seleccionar + {{ elementCalendar.name }}">
         Seleccionar
     </button>
+    <button (click)="togglePreferit($event)" class="btn-fav">
+        @if (preferitsService.esPreferit(elementCalendar.id)) {
+            Treure de preferits.
+        } @else {
+            Afegir a preferits.
+        }
+    </button>
 </div>

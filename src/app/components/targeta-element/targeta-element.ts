@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { DatePipe } from '@angular/common'; //PIPE IMPORTAT
 import { ElementCalendar } from '../../models/elementCalendar.model';
+import { PreferitsService } from '../../services/preferits.service';
 
 @Component({
   selector: 'app-targeta-element',
@@ -13,7 +14,20 @@ export class TargetaElement {
 
   @Output('element-clicked') elementClicked = new EventEmitter<ElementCalendar>();
 
+  public preferitsService = inject(PreferitsService);
+
   onElementClick() {
     this.elementClicked.emit(this.elementCalendar);
+  }
+
+  togglePreferit(event: Event)
+  {
+    event.stopPropagation();
+
+    if (this.preferitsService.esPreferit(this.elementCalendar.id)) {
+      this.preferitsService.eliminarPreferit(this.elementCalendar.id);
+    } else {
+      this.preferitsService.afegirPreferit(this.elementCalendar);
+    }
   }
 }

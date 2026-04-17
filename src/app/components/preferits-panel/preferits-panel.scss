@@ -1,0 +1,13 @@
+.input-nota {
+
+  &.ng-invalid.ng-touched {
+    border: 2px solid #ef4444;
+    background-color: #fee2e2;
+  }
+}
+
+.error {
+  color: #ef4444;
+  display: block;
+  margin-top: 4px;
+}

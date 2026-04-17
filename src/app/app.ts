@@ -1,26 +1,31 @@
-import { Component, signal } from '@angular/core';
-import { ElementCalendar } from './models/elementCalendar.model';
-import { ELEMENT_CALENDAR_MOCK } from './mocks/data-mock';
+import { Component, inject, OnInit, } from '@angular/core';
+import { ElementService } from './services/element.service';
 import { BarraCerca } from './components/barra-cerca/barra-cerca';
 import { LlistaElements } from './components/llista-elements/llista-elements';
+import { PreferitsService } from './services/preferits.service';
+import { PreferitsPanel } from './components/preferits-panel/preferits-panel';
 
 @Component({
   selector: 'app-root',
-  imports: [BarraCerca, LlistaElements],
+  imports: [BarraCerca, LlistaElements, PreferitsPanel],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  mockElements: ElementCalendar[] = ELEMENT_CALENDAR_MOCK;
-  filteredElements: ElementCalendar[] = this.mockElements;
+export class App implements OnInit {
+  elementService = inject(ElementService);
+  preferitsService = inject(PreferitsService);
+
+  ngOnInit(): void {
+    this.elementService.obtenirPopulars();
+  }
   
   filterCalendar(searchTerm: string) 
   {
     if(!searchTerm) {
-      this.filteredElements = this.mockElements;
+      this.elementService.obtenirPopulars()
       return;
+    } else {
+      this.elementService.cercar(searchTerm);
     }
-    const lowerSearchTerm = searchTerm.toLowerCase();
-    this.filteredElements = this.mockElements.filter(element => element.name.toLowerCase().includes(lowerSearchTerm));
   }
 }

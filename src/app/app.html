@@ -1,24 +1,30 @@
 <main class="main-container">
   <h1>Today's Day</h1>
-  <app-barra-cerca (search-term)="filterCalendar($event)"></app-barra-cerca>
-  <app-llista-elements [elements]="filteredElements"></app-llista-elements>
-</main>
 
-<!---
-<div class="calendar-container">
-  @for (element of mockElements; track element.id)
-  {
-    <div class="targeta-element">
-      <h3>{{ element.name }}</h3>
-      <p><strong>Inici:</strong> {{ element.dateStart | date: 'dd/MM/yyyy HH:mm' }}</p>
-      <p><strong>Durada:</strong> {{ element.timeInMinutes }} minuts</p>
-      @if (element.dateEnd)
-      {
-        <p><strong>Fi:</strong> {{ element.dateEnd | date: 'dd/MM/yyyy HH:mm' }}</p>
-      }
+  <div style="text-align: center; margin-bottom: 1.5rem; color: #ef4444; font-weight: bold; font-size: 1.1rem;">
+    Tens {{ preferitsService.totalPreferits() }} esdeveniments preferits
+  </div>
+
+  <app-barra-cerca (searchTerm)="filterCalendar($event)"></app-barra-cerca>
+  
+  <app-preferits-panel></app-preferits-panel>
+
+  <hr style="margin: 2rem 0; border: 1px solid #e2e8f0;">
+  
+  @if (elementService.carregant()) {
+    <div class="loading-container">
+      <div class="spinner"></div> <p>Carregant el calendari...</p>
     </div>
-  } @empty {
-    <p>Calendari buit</p>
   }
-</div>
---->
+
+  @else if (elementService.error()) {
+    <div class="error-box">
+      <p> {{ elementService.error() }}</p>
+      <button (click)="elementService.obtenirPopulars()">Reintentar</button>
+    </div>
+  }
+
+  @else {
+    <app-llista-elements [elements]="elementService.elements()"></app-llista-elements>
+  }
+</main>

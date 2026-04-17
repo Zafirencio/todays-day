@@ -1,27 +1,33 @@
 <div class="search-container">
-    <form #searchForm="ngForm" (ngSubmit)="onSearchTermChange()" class="search-form">
+    <div class="search-form">
         <div class="input-group">
-            <label for="searchInput" class="sr-only">Cercar esdeveniments al calendari</label>
+            <label for="cerca" class="sr-only">Cerca esdeveniments...</label>
+            <input
+                type="text"
+                [formControl]="termeCerca"
+                placeholder="Cerca Esdeveniments..."
+                class="cerca-input">
 
-            <input id="searchInput" type="text" name="searchText"
-             [(ngModel)]="searchText" (ngModelChange)="onSearchTermErased($event)" 
-             minlength="3" #searchModel="ngModel" placeholder="Cerca esdeveniments al calendari..." class="search-input"
-             [attr.aria-invalid]="searchModel.invalid && searchModel.touched ? 'true' : null" aria-describedby="searchError">
-
-            <button type="submit" [disabled]="searchForm.invalid" class="btn_search" aria-label="Executar la cerca">Cercar</button>
-        </div>
-
-        @if (searchModel.invalid)
-        {
-            @if (searchModel.touched)
-            {
-                <div id="searchError" class="error-message" aria-live="polite">
-                    @if (searchModel.errors?.['minlength'])
-                    {
-                        El text de cerca ha de tenir almenys 3 caràcters.
-                    }
-                </div>
+            @if (termeCerca.value) {
+                <button (click)="netejar()" class="btn-netejar">Netejar</button>
             }
+        </div>
+        @if (termeCerca.pending) {
+            <span class="validant">Validant...</span>
         }
-    </form>
+
+        @if (termeCerca.invalid && termeCerca.touched && !termeCerca.pending) {
+            <div class="errors" style="color: red; font-size: 0.85rem; margin-top: 0.5rem;">
+                @if (termeCerca.errors?.['minlength']) {
+                    <p>La cerca ha de ser com a minim 2 caràcters.</p>
+                }
+                @if (termeCerca.errors?.['maxlength']) {
+                    <p>La cerca no pot superar els 50 caràcters.</p>
+                }
+                @if (termeCerca.errors?.['sensResultats']) {
+                    <p>No s'ha trobat cap esdeveniment amb aquesta cerca.</p>
+                }
+            </div>
+        }
+    </div>
 </div>

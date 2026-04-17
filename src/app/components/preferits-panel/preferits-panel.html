@@ -1,0 +1,31 @@
+<section class="preferits-section">
+  <h2>Els meus Preferits</h2>
+  
+  @for (fav of preferitsService.preferits(); track fav.id) {
+    <div class="fav-item">
+      <h3>{{ fav.titol }}</h3>
+      
+      <div [formGroup]="forms[fav.id]">
+        <div formArrayName="notes">
+          @for (nota of getNotes(fav.id).controls; track nota; let i = $index) {
+            <div class="nota-input-group">
+              <input [formControlName]="i"
+               placeholder="Escriu una nota..."
+               class="input-nota">
+
+              <button type="button" (click)="eliminarNota(fav.id, i)" class="btn-x">x Eliminar nota</button>
+              
+              @if (getNotes(fav.id).at(i).invalid && getNotes(fav.id).at(i).touched) {
+                <small class="error">Mínim 3 caràcters.</small>
+              }
+            </div>
+          }
+        </div>
+      </div>
+      
+      <button type="button" (click)="afegirNota(fav.id)" class="btn-add">+ Afegir Nota</button>
+    </div>
+  } @empty {
+    <p>No tens cap esdeveniment preferit.</p>
+  }
+</section>
