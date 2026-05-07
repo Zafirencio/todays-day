@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { ElementCalendar } from '../../models/elementCalendar.model';
 import { TargetaElement } from '../targeta-element/targeta-element';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-llista-elements',
-  imports: [TargetaElement],
+  imports: [TargetaElement, ScrollingModule],
   templateUrl: './llista-elements.html',
   styleUrl: './llista-elements.scss',
 })

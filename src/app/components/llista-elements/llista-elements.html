@@ -1,8 +1,7 @@
 <div class="calendar-elements-list" aria-live="polite">
-    @for (elem of elements; track elem.id)
-    {
-        <app-targeta-element [element-calendar]="elem" (element-clicked)="onElementClicked($event)"></app-targeta-element>
-    } @empty {
-        <p class="empty-message">No hi ha elements per mostrar.</p>
-    }
+    <cdk-virtual-scroll-viewport itemSize="150" style="height: 500px; width: 100%;">
+  <div *cdkVirtualFor="let element of elements" class="viewport-item">
+    <app-targeta-element [element-calendar]="element"></app-targeta-element>
+  </div>
+</cdk-virtual-scroll-viewport>
 </div>

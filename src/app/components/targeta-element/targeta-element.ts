@@ -1,11 +1,12 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
-import { DatePipe } from '@angular/common'; //PIPE IMPORTAT
+import { Component, Input, Output, EventEmitter, inject, ChangeDetectionStrategy } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { ElementCalendar } from '../../models/elementCalendar.model';
 import { PreferitsService } from '../../services/preferits.service';
 
 @Component({
   selector: 'app-targeta-element',
   imports: [DatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './targeta-element.html',
   styleUrl: './targeta-element.scss',
 })

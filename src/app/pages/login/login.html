@@ -1,0 +1,23 @@
+<div class="login-container" style="max-width: 400px; margin: 2rem auto; padding: 2rem; border: 1px solid #ccc;">
+    <h2>Iniciar Sessió</h2>
+
+    <div style="margin-bottom: 1rem;">
+        <label>Email:</label>
+        <input type="text" [(ngModel)]="email" placeholder="Escriu el teu email" style="width: 100%; padding: 8px; margin-top: 5px;">
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label>Contrasenya:</label>
+        <input type="password" [(ngModel)]="contrasenya" placeholder="Escriu la teva contrasenya" style="width: 100%; padding: 8px; margin-top: 5px;">
+    </div>
+
+    <button (click)="onLogin()" style="width: 100%; padding: 10px; background-color: #3b82f6; color: white; border: none; cursor: pointer;">
+        Inicia Sessió
+    </button>
+
+    @if (errorVisible) {
+        <div style="margin-top: 1rem; color: white; background-color: #ef4444; padding: 10px; text-align: center;">
+            Email o contrasenya incorrectes.
+        </div>
+    }
+</div>

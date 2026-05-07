@@ -11,6 +11,27 @@
     margin-bottom: 2rem;
   }
 
+  .menu-navegacio {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+
+    a {
+      text-decoration: none;
+      color: #475569;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background-color 0.2s, color 0.2s;
+
+      &.actiu{
+        background-color: #3b82f6;
+        color: white;
+      }
+    }
+  }
+
   .loading-container {
     display: flex;
     flex-direction: column;
@@ -35,7 +56,7 @@
     background-color: #fee2e2;
     color: #b91c1c;
     padding: 2rem;
-    border: 1 px solid #f87171;
+    border: 1px solid #f87171;
     margin: 2rem auto;
     max-width: 400px;
 
